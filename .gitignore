@@ -1,0 +1,36 @@
+# Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache & bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.pckl
+
+# macOS & system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Large media files (exceeds GitHub limits or local test assets)
+*.mp4
+*.avi
+*.wav
+*.mov
+*.mkv
+
+# Temporary run artifacts
+temp/
+tmp/
+pyframes/
+pyavi/
+pywork/
+exps/
+demo/
