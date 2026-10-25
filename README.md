@@ -52,6 +52,8 @@ reelforge/
 ├── requirements.txt            # Python dependencies (Torch, WhisperX, Modal, etc.)
 ├── ytdownload.py              # YouTube video downloader utility
 ├── .gitignore                 # Excluded environments, temp files, and media
+├── eval/                      # Evaluation & benchmarking suite
+│   └── eval_moments.py        # Gemini moment-selection validation script
 └── asd/                       # Active Speaker Detection (LR-ASD) module
     ├── ASD.py                 # Core Active Speaker Detection runner
     ├── Columbia_test.py       # Inference & evaluation script
@@ -60,6 +62,32 @@ reelforge/
     ├── model/                 # Model architectures (Classifier, Encoder, S3FD)
     ├── utils/                 # Evaluation and metric calculation tools
     └── weight/                # Pretrained model weights (AVA, TalkSet)
+```
+
+---
+
+## 📊 Evaluation: Gemini Moment Selection Validation
+
+ReelForge includes an evaluation script (`eval/eval_moments.py`) to validate raw Gemini moment-selection responses across test videos.
+
+### Metrics Evaluated
+
+1. **Valid-JSON Rate**: Percentage of raw LLM outputs successfully parsed as JSON clip lists (stripping markdown fences).
+2. **Duration Compliance (30–60s)**: Proportion of detected moments adhering strictly to the 30–60 second duration target.
+3. **Non-Overlap Rate**: Fraction of videos whose extracted clips contain zero timestamp overlaps.
+
+### Usage
+
+```bash
+python eval/eval_moments.py responses/*.json
+```
+
+Each JSON file contains the raw text output returned by Gemini for one video. The script outputs:
+```text
+responses: 20
+valid JSON list: 20/20
+clips in 30-60s: 38/40
+overlap-free responses: 20/20
 ```
 
 ---
@@ -112,3 +140,4 @@ pip install -r requirements.txt
 - [LR-ASD: Lightweight and Robust Network for Active Speaker Detection (IJCV 2025)](https://github.com/Junhua-Liao/Light-ASD)
 - [WhisperX: Fast Automatic Speech Recognition with Word-Level Timestamps](https://github.com/m-bain/whisperX)
 - [Modal Labs: Serverless Cloud Infrastructure](https://modal.com/)
+
